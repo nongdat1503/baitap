@@ -3,315 +3,56 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hệ Thống Quản Lý Bài Tập Về Nhà</title>
+    <title>Cổng Nộp Bài Tập Về Nhà</title>
     <style>
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            font-family: 'Segoe UI', system-ui, sans-serif;
-        }
-
-        body {
-            background-color: #f0f2f5;
-            color: #333;
-            padding: 20px;
-        }
-
-        .container {
-            max-width: 850px;
-            margin: 0 auto;
-        }
-
-        h1 {
-            text-align: center;
-            margin-bottom: 25px;
-            color: #1a73e8;
-        }
-
-        h2 {
-            margin-bottom: 15px;
-            color: #202124;
-            font-size: 1.25rem;
-            border-bottom: 2px solid #e8eaed;
-            padding-bottom: 8px;
-        }
-
-        .panel {
-            background: #fff;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.12);
-            margin-bottom: 25px;
-        }
-
-        .form-row {
-            display: flex;
-            gap: 15px;
-        }
-
-        .form-row .form-group {
-            flex: 1;
-        }
-
-        .form-group {
-            margin-bottom: 12px;
-        }
-
-        label {
-            display: block;
-            font-weight: 600;
-            margin-bottom: 5px;
-            font-size: 14px;
-            color: #5f6368;
-        }
-
-        input[type="text"], input[type="datetime-local"], textarea {
-            width: 100%;
-            padding: 10px;
-            border: 1px solid #dadce0;
-            border-radius: 6px;
-            font-size: 15px;
-            outline: none;
-        }
-
-        input:focus, textarea:focus {
-            border-color: #1a73e8;
-        }
-
-        .btn-submit {
-            background-color: #1a73e8;
-            color: white;
-            padding: 12px;
-            border: none;
-            border-radius: 6px;
-            cursor: pointer;
-            font-weight: bold;
-            font-size: 15px;
-            width: 100%;
-            margin-top: 5px;
-        }
-
-        .btn-submit:hover {
-            background-color: #1557b0;
-        }
-
-        /* Thẻ bài tập */
-        .card {
-            background: #fff;
-            border: 1px solid #e0e0e0;
-            border-left: 6px solid #1a73e8;
-            padding: 18px;
-            margin-bottom: 20px;
-            border-radius: 6px;
-            position: relative;
-        }
-
-        .card h3 {
-            color: #1967d2;
-            margin-bottom: 5px;
-            padding-right: 70px;
-        }
-
-        .meta {
-            font-size: 13px;
-            color: #70757a;
-            margin-bottom: 10px;
-        }
-
-        .desc {
-            font-size: 15px;
-            margin-bottom: 15px;
-            line-height: 1.5;
-            background: #f8f9fa;
-            padding: 10px;
-            border-radius: 4px;
-        }
-
-        .btn-delete {
-            position: absolute;
-            top: 15px;
-            right: 15px;
-            background: #d93025;
-            color: white;
-            border: none;
-            padding: 6px 12px;
-            border-radius: 4px;
-            cursor: pointer;
-            font-weight: 600;
-            font-size: 13px;
-        }
-
-        .btn-delete:hover {
-            background: #b31412;
-        }
-
-        /* Khu vực nộp bài của học sinh */
-        .submission-section {
-            margin-top: 15px;
-            padding-top: 15px;
-            border-top: 1px dashed #ddd;
-        }
-
-        .submission-section h4 {
-            font-size: 14px;
-            color: #3c4043;
-            margin-bottom: 8px;
-        }
-
-        .submit-box {
-            display: flex;
-            gap: 10px;
-            margin-bottom: 12px;
-        }
-
-        .submit-box input {
-            font-size: 14px;
-        }
-
-        .btn-student-submit {
-            background: #188038;
-            color: white;
-            border: none;
-            padding: 0 15px;
-            border-radius: 6px;
-            cursor: pointer;
-            font-weight: 600;
-            white-space: nowrap;
-        }
-
-        .btn-student-submit:hover {
-            background: #13652b;
-        }
-
-        /* Danh sách học sinh đã nộp */
-        .submitted-list {
-            background: #f1f8e9;
-            padding: 10px;
-            border-radius: 6px;
-            font-size: 13px;
-        }
-
-        .submitted-item {
-            padding: 5px 0;
-            border-bottom: 1px solid #e8eaed;
-            color: #2e7d32;
-        }
-
-        .submitted-item:last-child {
-            border-bottom: none;
-        }
-
-        .submitted-item a {
-            color: #1a73e8;
-            text-decoration: none;
-            font-weight: 600;
-        }
-
-        .submitted-item a:hover {
-            text-decoration: underline;
-        }
-
-        .no-task {
-            text-align: center;
-            color: #70757a;
-            font-style: italic;
-            padding: 20px;
-        }
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; }
+        body { background-color: #f0f2f5; color: #333; padding: 20px; }
+        .container { max-width: 800px; margin: 0 auto; }
+        h1 { text-align: center; margin-bottom: 25px; color: #1a73e8; }
+        .panel { background: #fff; padding: 20px; border-radius: 8px; box-shadow: 0 1px 3px rgba(0,0,0,0.12); }
+        .card { background: #fff; border: 1px solid #e0e0e0; border-left: 6px solid #1a73e8; padding: 18px; margin-bottom: 20px; border-radius: 6px; }
+        .card h3 { color: #1967d2; margin-bottom: 5px; }
+        .meta { font-size: 13px; color: #70757a; margin-bottom: 10px; }
+        .desc { font-size: 15px; margin-bottom: 15px; line-height: 1.5; background: #f8f9fa; padding: 10px; border-radius: 4px; }
+        .submission-section { margin-top: 15px; padding-top: 15px; border-top: 1px dashed #ddd; }
+        .submission-section h4 { font-size: 14px; color: #3c4043; margin-bottom: 8px; }
+        .submit-box { display: flex; gap: 10px; margin-bottom: 12px; }
+        .submit-box input { flex: 1; padding: 10px; border: 1px solid #dadce0; border-radius: 6px; font-size: 14px; outline: none; }
+        .btn-student-submit { background: #188038; color: white; border: none; padding: 0 20px; border-radius: 6px; cursor: pointer; font-weight: bold; white-space: nowrap; }
+        .btn-student-submit:hover { background: #13652b; }
+        .submitted-list { background: #f1f8e9; padding: 10px; border-radius: 6px; font-size: 13px; margin-top: 10px; }
+        .submitted-item { padding: 5px 0; border-bottom: 1px solid #e8eaed; color: #2e7d32; }
+        .submitted-item:last-child { border-bottom: none; }
+        .no-task { text-align: center; color: #70757a; font-style: italic; padding: 20px; }
     </style>
 </head>
 <body>
-
     <div class="container">
-        <h1>📚 Hệ Thống Quản Lý Bài Tập Về Nhà</h1>
-        
-        <!-- Khung 1: Dành cho Giáo viên giao bài -->
-        <div class="panel form-container">
-            <h2>👨‍🏫 Dành Cho Giáo Viên: Giao Bài Tập</h2>
-            <form id="homeworkForm">
-                <div class="form-row">
-                    <div class="form-group">
-                        <label for="subject">Môn học:</label>
-                        <input type="text" id="subject" placeholder="Toán, Văn, Anh..." required>
-                    </div>
-                    <div class="form-group">
-                        <label for="deadline">Hạn chót nộp:</label>
-                        <input type="datetime-local" id="deadline" required>
-                    </div>
-                </div>
-                
-                <div class="form-group">
-                    <label for="title">Tiêu đề bài tập:</label>
-                    <input type="text" id="title" placeholder="Ví dụ: Bài tập về nhà tiết 5..." required>
-                </div>
-                
-                <div class="form-group">
-                    <label for="description">Yêu cầu chi tiết:</label>
-                    <textarea id="description" rows="3" placeholder="Nhập nội dung đề bài hoặc đính kèm link tài liệu..." required></textarea>
-                </div>
-                
-                <button type="submit" class="btn-submit">Phát Hành Bài Tập</button>
-            </form>
-        </div>
-
-        <!-- Khung 2: Danh sách hiển thị và Nộp bài -->
-        <div class="panel list-container">
-            <h2>📝 Danh Sách Bài Tập Đã Giao & Cổng Nộp Bài</h2>
+        <h1>📚 Cổng Nộp Bài Tập Học Sinh</h1>
+        <div class="panel">
             <div id="homeworkList">
-                <!-- Code JavaScript sẽ tự động chèn các bài tập vào đây -->
+                <p class="no-task">Đang tải danh sách bài tập...</p>
             </div>
         </div>
     </div>
 
     <script>
-        // Thay "DÁN_URL_CỦA_BẠN_VÀO_ĐÂY" bằng link Web App bạn copy từ Google Apps Script
+        // THAY LINK GOOGLE APPS SCRIPT CỦA BẠN VÀO ĐÂY
         const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwATxwWnNUEj6o-KnkH-FfYRq0A2F1nPQBIEzevCOKMqDkb7lHUi1ZFmWNjbFhWZT4k/exec";
+
         let homeworkData = [];
 
-        // Hàm lấy toàn bộ bài tập từ Google Sheets
         async function fetchHomework() {
             try {
                 const res = await fetch(SCRIPT_URL);
                 homeworkData = await res.json();
                 renderHomework();
             } catch (err) {
-                console.error("Lỗi khi tải dữ liệu:", err);
+                console.error("Lỗi tải dữ liệu:", err);
+                document.getElementById('homeworkList').innerHTML = '<p class="no-task">Không thể kết nối máy chủ. Vui lòng kiểm tra lại URL!</p>';
             }
         }
 
-        // Giáo viên phát hành bài tập mới
-        document.getElementById('homeworkForm').addEventListener('submit', async function(e) {
-            e.preventDefault();
-            const btn = e.target.querySelector('button');
-            btn.innerText = "Đang phát hành...";
-            btn.disabled = true;
-
-            const subject = document.getElementById('subject').value;
-            const title = document.getElementById('title').value;
-            const deadline = new Date(document.getElementById('deadline').value).toLocaleString('vi-VN');
-            const description = document.getElementById('description').value;
-
-            const payload = {
-                action: "createTask",
-                id: Date.now(),
-                subject,
-                title,
-                deadline,
-                description
-            };
-
-            await fetch(SCRIPT_URL, {
-                method: 'POST',
-                body: JSON.stringify(payload)
-            });
-
-            document.getElementById('homeworkForm').reset();
-            btn.innerText = "Phát Hành Bài Tập";
-            btn.disabled = false;
-            fetchHomework();
-        });
-
-        // Vẽ lại giao diện
         function renderHomework() {
             const homeworkList = document.getElementById('homeworkList');
             homeworkList.innerHTML = '';
@@ -326,10 +67,10 @@
                 if (task.submissions && task.submissions.length > 0) {
                     submissionHTML = `
                         <div class="submitted-list">
-                            <strong>📋 Danh sách học sinh đã nộp (${task.submissions.length}):</strong>
+                            <strong>📋 Các bạn đã nộp (${task.submissions.length}):</strong>
                             ${task.submissions.map(sub => `
                                 <div class="submitted-item">
-                                    🙋‍♂️ <b>${sub.studentName}</b> - 🔗 Link bài làm: <a href="${sub.homeworkLink}" target="_blank">Bấm xem chi tiết</a> <small style="color: #70757a">(${sub.time})</small>
+                                    🙋‍♂️ <b>${sub.studentName}</b> <small style="color: #70757a">(${sub.time})</small>
                                 </div>
                             `).join('')}
                         </div>
@@ -342,7 +83,6 @@
                     <h3>[${task.subject}] ${task.title}</h3>
                     <p class="meta">⏳ <b>Hạn chót:</b> ${task.deadline}</p>
                     <p class="desc">${task.description.replace(/\n/g, '<br>')}</p>
-                    <button class="btn-delete" onclick="deleteTask(${task.id})">Xóa bài</button>
                     
                     <div class="submission-section">
                         <h4>👨‍🎓 Nộp Bài Của Bạn:</h4>
@@ -358,7 +98,6 @@
             });
         }
 
-        // Học sinh nộp bài
         async function submitHomework(taskId) {
             const nameInput = document.getElementById(`name-${taskId}`);
             const linkInput = document.getElementById(`link-${taskId}`);
@@ -368,7 +107,7 @@
             const homeworkLink = linkInput.value.trim();
 
             if (!studentName || !homeworkLink) {
-                alert('Vui lòng điền đầy đủ thông tin!');
+                alert('Vui lòng điền đầy đủ cả Họ tên và Link bài làm!');
                 return;
             }
 
@@ -390,27 +129,21 @@
                 time: new Date().toLocaleString('vi-VN')
             };
 
-            await fetch(SCRIPT_URL, {
-                method: 'POST',
-                body: JSON.stringify(payload)
-            });
-
-            alert('Nộp bài thành công!');
-            fetchHomework();
-        }
-
-        // Xóa bài tập
-        async function deleteTask(taskId) {
-            if (confirm('Bạn có chắc chắn muốn xóa bài tập này?')) {
+            try {
                 await fetch(SCRIPT_URL, {
                     method: 'POST',
-                    body: JSON.stringify({ action: "deleteTask", taskId: taskId })
+                    body: JSON.stringify(payload)
                 });
+                alert('Nộp bài thành công!');
                 fetchHomework();
+            } catch (err) {
+                alert('Có lỗi xảy ra khi nộp bài, thử lại sau!');
+            } finally {
+                btn.innerText = "Nộp bài";
+                btn.disabled = false;
             }
         }
 
-        // Tải dữ liệu ngay khi mở trang
         fetchHomework();
     </script>
 </body>
